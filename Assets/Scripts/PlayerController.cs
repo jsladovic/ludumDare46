@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
 	public CharacterController Controller;
 	private const float Speed = 2.0f;
+	private const float RotationSpeed = 15.0f;
 
 	private const float PickUpRadius = 1.5f;
 
@@ -14,12 +15,12 @@ public class PlayerController : MonoBehaviour
 	public Transform DropPosition;
 	private CreatureController CarriedCreature;
 
-    void Start()
-    {
-        
-    }
+	void Start()
+	{
 
-    void Update()
+	}
+
+	void Update()
 	{
 		Vector3 direction = Vector3.zero;
 		if (Input.GetAxisRaw("Horizontal") != 0.0f)
@@ -33,7 +34,10 @@ public class PlayerController : MonoBehaviour
 		if (direction != Vector3.zero)
 		{
 			direction.Normalize();
-			transform.rotation = Quaternion.LookRotation(direction);
+
+			Quaternion lookRotation = Quaternion.LookRotation(direction);
+			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * RotationSpeed);
+
 			Controller.Move(direction * Speed * Time.deltaTime);
 		}
 
