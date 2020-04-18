@@ -16,7 +16,7 @@ public class GuardController : MonoBehaviour
 	private Color DetectedFlashlightColor = Color.red;
 
 	public float FieldOfView = 55.0f;
-	public int RayCount = 50;
+	public int RayCount = 25;
 	private float AngleIncrease => FieldOfView / RayCount;
 	public float ViewDistance = 8.0f;
 
@@ -59,13 +59,23 @@ public class GuardController : MonoBehaviour
 			angle -= 360.0f;
 
 		bool detectedSomething = false;
+		Vector3 originUpper = transform.position;
+		Vector3 originLower = transform.position;
+		originUpper.y += 0.35f;
+		originLower.y -= 0.35f;
 		for (int i = 0; i < RayCount; i++)
 		{
-			if (Physics.Raycast(transform.position, GetVectorFromAngle(angle), out RaycastHit hit, ViewDistance, ViewConeLayerMask))
+			if (Physics.Raycast(originUpper, GetVectorFromAngle(angle), out RaycastHit hit, ViewDistance, ViewConeLayerMask))
 			{
 				detectedSomething = true;
 			}
-			Debug.DrawRay(transform.position, GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
+			Debug.DrawRay(originUpper, GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
+
+			if (Physics.Raycast(originLower, GetVectorFromAngle(angle), out hit, ViewDistance, ViewConeLayerMask))
+			{
+				detectedSomething = true;
+			}
+			Debug.DrawRay(originLower, GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
 			angle -= AngleIncrease;
 		}
 
