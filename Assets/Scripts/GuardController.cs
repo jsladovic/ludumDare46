@@ -12,8 +12,6 @@ public class GuardController : MonoBehaviour
 	public LayerMask ViewConeLayerMask;
 
 	public Light Flashlight;
-	private Color DefaultFlashlightColor = Color.white;
-	private Color DetectedFlashlightColor = Color.red;
 
 	public float FieldOfView = 55.0f;
 	public int RayCount = 25;
@@ -54,7 +52,12 @@ public class GuardController : MonoBehaviour
 			transform.rotation = Quaternion.LookRotation(direction);
 		}
 
-		float angle = GetAngleFromVector(transform.forward) + FieldOfView / 2.0f;
+		HandleRaycasts();
+	}
+
+	private void HandleRaycasts()
+	{
+		float angle = Utils.GetAngleFromVector(transform.forward) + FieldOfView / 2.0f;
 		if (angle > 360.0f)
 			angle -= 360.0f;
 
@@ -65,17 +68,17 @@ public class GuardController : MonoBehaviour
 		originLower.y -= 0.35f;
 		for (int i = 0; i < RayCount; i++)
 		{
-			if (Physics.Raycast(originUpper, GetVectorFromAngle(angle), out RaycastHit hit, ViewDistance, ViewConeLayerMask))
+			if (Physics.Raycast(originUpper, Utils.GetVectorFromAngle(angle), out RaycastHit hit, ViewDistance, ViewConeLayerMask))
 			{
 				detectedSomething = true;
 			}
-			Debug.DrawRay(originUpper, GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
+			Debug.DrawRay(originUpper, Utils.GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
 
-			if (Physics.Raycast(originLower, GetVectorFromAngle(angle), out hit, ViewDistance, ViewConeLayerMask))
+			if (Physics.Raycast(originLower, Utils.GetVectorFromAngle(angle), out hit, ViewDistance, ViewConeLayerMask))
 			{
 				detectedSomething = true;
 			}
-			Debug.DrawRay(originLower, GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
+			Debug.DrawRay(originLower, Utils.GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
 			angle -= AngleIncrease;
 		}
 
@@ -110,23 +113,7 @@ public class GuardController : MonoBehaviour
 				DetectionTimer = MaxDetectionTimer;
 		}
 
-		Flashlight.color = Color.Lerp(DetectedFlashlightColor, DefaultFlashlightColor, DetectionTimer);
-	}
-
-	private static Vector3 GetVectorFromAngle(float angle)
-	{
-		float angleRad = angle * Mathf.Deg2Rad;
-		return new Vector3(Mathf.Cos(angleRad), 0.0f, Mathf.Sin(angleRad)).normalized;
-	}
-
-	private static float GetAngleFromVector(Vector3 vector)
-	{
-		vector.y = 0.0f;
-		vector = vector.normalized;
-		float n = Mathf.Atan2(vector.z, vector.x) * Mathf.Rad2Deg;
-		if (n < 0.0f)
-			n += 360.0f;
-		return n;
+		Flashlight.color = Color.Lerp(Utils.DetectedFlashlightColor, Utils.DefaultFlashlightColor, DetectionTimer);
 	}
 
 	private void OnTriggerEnter(Collider other)

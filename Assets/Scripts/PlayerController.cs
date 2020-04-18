@@ -59,7 +59,6 @@ public class PlayerController : MonoBehaviour
 		}
 		else
 		{
-			// Drop creature
 			CarriedCreature.transform.SetParent(transform.parent);
 			CarriedCreature.transform.position = DropPosition.position;
 			CarriedCreature = null;
