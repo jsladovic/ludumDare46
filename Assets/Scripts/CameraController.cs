@@ -13,8 +13,9 @@ public class CameraController : MonoBehaviour
 	private bool IncreasingRotation;
 	private float TotalRotation;
 	public float StartingRaycastOffset = -1.5f;
+	public float MiddleUpperRaycastOffset = -0.9f;
+	public float MiddleLowerRaycastOffset = -0.6f;
 	public float EndingRaycastOffset = -0.42f;
-	private float MiddleOffset => (StartingRaycastOffset + EndingRaycastOffset) / 2.0f;
 
 	public float FieldOfView = 65.0f;
 	public int RayCount = 15;
@@ -25,6 +26,8 @@ public class CameraController : MonoBehaviour
 	private float DetectionTimer;
 	private const float MaxDetectionTimer = 1.0f;
 
+	private bool Disabled;
+
 	void Start()
 	{
 		DetectionTimer = MaxDetectionTimer;
@@ -32,6 +35,9 @@ public class CameraController : MonoBehaviour
 
 	void Update()
 	{
+		if (Disabled == true)
+			return;
+
 		if (DetectedSomething == false)
 		{
 			Light.transform.Rotate(Vector3.up, (IncreasingRotation ? 1.0f : -1.0f) * RotationSpeed * Time.deltaTime);
@@ -70,11 +76,17 @@ public class CameraController : MonoBehaviour
 			}
 			Debug.DrawRay(Light.transform.position, Utils.GetVectorFromAngle(angle, EndingRaycastOffset) * ViewDistance, Color.cyan);
 
-			if (Physics.Raycast(Light.transform.position, Utils.GetVectorFromAngle(angle, MiddleOffset), out hit, ViewDistance, ViewConeLayerMask))
+			if (Physics.Raycast(Light.transform.position, Utils.GetVectorFromAngle(angle, MiddleUpperRaycastOffset), out hit, ViewDistance, ViewConeLayerMask))
 			{
 				detectedSomething = true;
 			}
-			Debug.DrawRay(Light.transform.position, Utils.GetVectorFromAngle(angle, MiddleOffset) * ViewDistance, Color.cyan);
+			Debug.DrawRay(Light.transform.position, Utils.GetVectorFromAngle(angle, MiddleUpperRaycastOffset) * ViewDistance, Color.cyan);
+
+			if (Physics.Raycast(Light.transform.position, Utils.GetVectorFromAngle(angle, MiddleLowerRaycastOffset), out hit, ViewDistance, ViewConeLayerMask))
+			{
+				detectedSomething = true;
+			}
+			Debug.DrawRay(Light.transform.position, Utils.GetVectorFromAngle(angle, MiddleLowerRaycastOffset) * ViewDistance, Color.cyan);
 			angle -= AngleIncrease;
 		}
 
@@ -95,7 +107,7 @@ public class CameraController : MonoBehaviour
 			{
 				DetectionTimer = 0.0f;
 				// Game over
-				Debug.Log($"game over");
+				//Debug.Log($"game over");
 			}
 		}
 		else if (DetectedSomething == false && detected == true)
@@ -110,5 +122,19 @@ public class CameraController : MonoBehaviour
 		}
 
 		Light.color = Color.Lerp(Utils.DetectedFlashlightColor, Utils.DefaultFlashlightColor, DetectionTimer);
+	}
+
+	public void Disable()
+	{
+		Disabled = true;
+		DetectedSomething = false;
+		DetectionTimer = MaxDetectionTimer;
+		Light.enabled = false;
+	}
+
+	public void Enable()
+	{
+		Disabled = false;
+		Light.enabled = true;
 	}
 }

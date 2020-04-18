@@ -27,6 +27,8 @@ public class GuardController : MonoBehaviour
 	private float DetectionTimer;
 	private const float MaxDetectionTimer = 1.0f;
 
+	private bool Stunned;
+
 	void Start()
 	{
 		if (PathParent != null)
@@ -44,6 +46,9 @@ public class GuardController : MonoBehaviour
 
 	void Update()
 	{
+		if (Stunned)
+			return;
+
 		if (Path != null && DetectedSomething == false)
 		{
 			Vector3 direction = CurrentPathTransform.position - transform.position;
@@ -104,7 +109,7 @@ public class GuardController : MonoBehaviour
 			{
 				DetectionTimer = 0.0f;
 				// Game over
-				Debug.Log($"game over");
+				//Debug.Log($"game over");
 			}
 		}
 		else if (DetectedSomething == false && detected == true)
@@ -127,5 +132,19 @@ public class GuardController : MonoBehaviour
 		{
 			CurrentPathNode = (CurrentPathNode + 1) % Path.Length;
 		}
+	}
+
+	public void Stun()
+	{
+		Stunned = true;
+		DetectedSomething = false;
+		DetectionTimer = MaxDetectionTimer;
+		Flashlight.enabled = false;
+	}
+
+	public void UnStun()
+	{
+		Stunned = false;
+		Flashlight.enabled = true;
 	}
 }
