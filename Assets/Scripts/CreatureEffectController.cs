@@ -9,7 +9,6 @@ public class CreatureEffectController : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log($"on trigger enter {other.tag}");
 		if (Ability == Ability.Electric)
 		{
 			if (other.tag == "Camera")
@@ -30,7 +29,6 @@ public class CreatureEffectController : MonoBehaviour
 
 	private void OnTriggerExit(Collider other)
 	{
-		Debug.Log($"on trigger exit {other.tag}");
 		if (Ability == Ability.Electric)
 		{
 			if (other.tag == "Camera")

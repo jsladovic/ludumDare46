@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 	public Transform DropPosition;
 	private CreatureController CarriedCreature;
 
+	private ExtractionPoint ExtractionPoint;
+
 	void Start()
 	{
 
@@ -63,9 +65,27 @@ public class PlayerController : MonoBehaviour
 		}
 		else
 		{
+			if (ExtractionPoint != null)
+			{
+				ExtractionPoint.ReleaseCreature(CarriedCreature);
+			}
+			else
+			{
+				CarriedCreature.transform.position = DropPosition.position;
+			}
+
 			CarriedCreature.transform.SetParent(transform.parent);
-			CarriedCreature.transform.position = DropPosition.position;
 			CarriedCreature = null;
 		}
+	}
+
+	public void EnteredExtractionPoint(ExtractionPoint point)
+	{
+		ExtractionPoint = point;
+	}
+
+	public void ExitedExtractionPoint()
+	{
+		ExtractionPoint = null;
 	}
 }
