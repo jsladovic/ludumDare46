@@ -39,6 +39,7 @@ public class GuardController : MonoBehaviour
 		}
 
 		CurrentPathNode = 0;
+		DetectionTimer = MaxDetectionTimer;
 	}
 
     void Update()
@@ -77,22 +78,29 @@ public class GuardController : MonoBehaviour
 		{
 			// back to normal
 			DetectedSomething = false;
-			DetectionTimer = MaxDetectionTimer;
 		}
 		else if (DetectedSomething == true && detected == true)
 		{
 			DetectionTimer -= Time.deltaTime;
 			if (DetectionTimer <= 0.0f)
 			{
+				DetectionTimer = 0.0f;
 				// Game over
 				Debug.Log($"game over");
 			}
 		}
 		else if (DetectedSomething == false && detected == true)
 		{
-			DetectionTimer = MaxDetectionTimer;
 			DetectedSomething = true;
 		}
+		else if (DetectionTimer < MaxDetectionTimer)
+		{
+			DetectionTimer += Time.deltaTime;
+			if (DetectionTimer > MaxDetectionTimer)
+				DetectionTimer = MaxDetectionTimer;
+		}
+
+		Flashlight.color = Color.Lerp(DetectedFlashlightColor, DefaultFlashlightColor, DetectionTimer);
 	}
 
 	private static Vector3 GetVectorFromAngle(float angle)
