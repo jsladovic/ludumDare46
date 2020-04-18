@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
 	private CreatureController CarriedCreature;
 
 	private ExtractionPoint ExtractionPoint;
+	private bool ExtractionStarted;
+	private float ExtractionTimeRemaining;
+	private const float MaxExtractionTime = 1.0f;
 
 	void Start()
 	{
@@ -24,6 +27,16 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
+		if (ExtractionStarted == true)
+		{
+			ExtractionTimeRemaining -= Time.deltaTime;
+			if (ExtractionTimeRemaining <= 0.0f)
+			{
+				Debug.Log("Player extracted");
+				ExtractionStarted = false;
+			}
+		}
+
 		Vector3 direction = Vector3.zero;
 		if (Input.GetAxisRaw("Horizontal") != 0.0f)
 		{
@@ -47,20 +60,33 @@ public class PlayerController : MonoBehaviour
 		{
 			HandlePickUp();
 		}
+		if (Input.GetKeyUp(KeyCode.E))
+		{
+			if (ExtractionStarted == true)
+				ExtractionStarted = false;
+		}
 	}
 
 	private void HandlePickUp()
 	{
 		if (CarriedCreature == null)
 		{
-			Collider[] colliders = Physics.OverlapSphere(transform.position, PickUpRadius);
-			if (colliders.Any(c => c.tag == "Creature"))
+			if (ExtractionPoint != null)
 			{
-				CreatureController creature = colliders.First(c => c.tag == "Creature").GetComponentInParent<CreatureController>();
-				CarriedCreature = creature ?? throw new UnityException("Found creature, but it doesn't have a controller");
+				ExtractionStarted = true;
+				ExtractionTimeRemaining = MaxExtractionTime;
+			}
+			else
+			{
+				Collider[] colliders = Physics.OverlapSphere(transform.position, PickUpRadius);
+				if (colliders.Any(c => c.tag == "Creature"))
+				{
+					CreatureController creature = colliders.First(c => c.tag == "Creature").GetComponentInParent<CreatureController>();
+					CarriedCreature = creature ?? throw new UnityException("Found creature, but it doesn't have a controller");
 
-				CarriedCreature.transform.SetParent(transform);
-				CarriedCreature.transform.position = CarryPosition.position;
+					CarriedCreature.transform.SetParent(transform);
+					CarriedCreature.transform.position = CarryPosition.position;
+				}
 			}
 		}
 		else
