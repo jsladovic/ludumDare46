@@ -53,8 +53,8 @@ MonoBehaviour:
   Offset: 45
   StartingRaycastOffset: -1.5
   EndingRaycastOffset: -0.42
-  FieldOfView: 55
-  RayCount: 25
+  FieldOfView: 65
+  RayCount: 15
   ViewDistance: 10
 --- !u!1 &1853749635229617944
 GameObject:

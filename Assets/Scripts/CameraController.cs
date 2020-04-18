@@ -13,10 +13,10 @@ public class CameraController : MonoBehaviour
 	private bool IncreasingRotation;
 	private float TotalRotation;
 	public float StartingRaycastOffset = -1.5f;
-	public float EndingRaycastOffset = -0.4f;
+	public float EndingRaycastOffset = -0.42f;
 	private float MiddleOffset => (StartingRaycastOffset + EndingRaycastOffset) / 2.0f;
 
-	public float FieldOfView = 55.0f;
+	public float FieldOfView = 65.0f;
 	public int RayCount = 15;
 	private float AngleIncrease => FieldOfView / RayCount;
 	public float ViewDistance = 10.0f;

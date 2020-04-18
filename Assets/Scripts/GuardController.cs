@@ -9,6 +9,8 @@ public class GuardController : MonoBehaviour
 	private Transform[] Path;
 
 	private const float Speed = 2.5f;
+	private const float RotationSpeed = 10.0f;
+	private const float RotationDeadZone = 5.0f;
 	public LayerMask ViewConeLayerMask;
 
 	public Light Flashlight;
@@ -25,8 +27,8 @@ public class GuardController : MonoBehaviour
 	private float DetectionTimer;
 	private const float MaxDetectionTimer = 1.0f;
 
-    void Start()
-    {
+	void Start()
+	{
 		if (PathParent != null)
 		{
 			Path = new Transform[PathParent.childCount];
@@ -40,16 +42,19 @@ public class GuardController : MonoBehaviour
 		DetectionTimer = MaxDetectionTimer;
 	}
 
-    void Update()
-    {
+	void Update()
+	{
 		if (Path != null && DetectedSomething == false)
 		{
 			Vector3 direction = CurrentPathTransform.position - transform.position;
 			direction.y = 0.0f;
 			direction.Normalize();
 
-			Controller.Move(direction * Speed * Time.deltaTime);
-			transform.rotation = Quaternion.LookRotation(direction);
+			Quaternion lookRotation = Quaternion.LookRotation(direction);
+			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * RotationSpeed);
+
+			if (Quaternion.Angle(transform.rotation, lookRotation) < RotationDeadZone)
+				Controller.Move(direction * Speed * Time.deltaTime);
 		}
 
 		HandleRaycasts();
