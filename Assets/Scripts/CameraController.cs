@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-	public Transform LightHolder;
 	public Light Light;
 	public LayerMask ViewConeLayerMask;
+	public Transform CameraHolder;
 
 	private float Offset => GameManager.Instance.Alarmed ? AlarmedOffset : DefaultOffset;
 	private float RotationSpeed => GameManager.Instance.Alarmed ? AlarmedRotationSpeed : DefaultRotationSpeed;
@@ -53,8 +53,10 @@ public class CameraController : MonoBehaviour
 
 		if (DetectedSomething == false)
 		{
-			Light.transform.Rotate(Vector3.up, (IncreasingRotation ? 1.0f : -1.0f) * RotationSpeed * Time.deltaTime);
-			TotalRotation += (IncreasingRotation ? 1.0f : -1.0f) * RotationSpeed * Time.deltaTime;
+			float changeInRotation = (IncreasingRotation ? 1.0f : -1.0f) * RotationSpeed * Time.deltaTime;
+			Light.transform.Rotate(Vector3.up, changeInRotation);
+			CameraHolder.Rotate(Vector3.up, changeInRotation);
+			TotalRotation += changeInRotation;
 			if (IncreasingRotation == true && TotalRotation >= Offset)
 			{
 				IncreasingRotation = false;
