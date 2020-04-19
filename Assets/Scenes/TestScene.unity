@@ -3343,7 +3343,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27350
+  m_Name: pb_Mesh37912
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4398,6 +4398,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.25, z: 0.25}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1733024670 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 139476300987078358, guid: a4b60936e199e884ba66d7cdf426d042,
+    type: 3}
+  m_PrefabInstance: {fileID: 3035201830981023118}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1950426597
 GameObject:
   m_ObjectHideFlags: 0
@@ -4432,7 +4438,7 @@ Transform:
   - {fileID: 806309653}
   - {fileID: 106312007}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1968390627
 GameObject:
@@ -5176,7 +5182,7 @@ PrefabInstance:
     - target: {fileID: 1853749634399437656, guid: 9018b7f91d3637d4fad7706a823ea6e0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1853749634399437656, guid: 9018b7f91d3637d4fad7706a823ea6e0,
         type: 3}
@@ -5349,7 +5355,7 @@ PrefabInstance:
     - target: {fileID: 2607002613147761458, guid: 68b32fa49dae4954e99944dff087af79,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2607002613147761458, guid: 68b32fa49dae4954e99944dff087af79,
         type: 3}
@@ -5380,6 +5386,11 @@ PrefabInstance:
       propertyPath: PathParent
       value: 
       objectReference: {fileID: 1950426598}
+    - target: {fileID: 3035201830401901040, guid: a4b60936e199e884ba66d7cdf426d042,
+        type: 3}
+      propertyPath: Animator
+      value: 
+      objectReference: {fileID: 1733024670}
     - target: {fileID: 3035201830401901043, guid: a4b60936e199e884ba66d7cdf426d042,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5418,7 +5429,7 @@ PrefabInstance:
     - target: {fileID: 3035201830401901043, guid: a4b60936e199e884ba66d7cdf426d042,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3035201830401901043, guid: a4b60936e199e884ba66d7cdf426d042,
         type: 3}

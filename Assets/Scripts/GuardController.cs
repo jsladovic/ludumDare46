@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GuardController : MonoBehaviour
 {
+	public Animator Animator;
 	public CharacterController Controller;
 	public Transform PathParent;
 	private Transform[] Path;
@@ -72,6 +71,8 @@ public class GuardController : MonoBehaviour
 
 			if (Quaternion.Angle(transform.rotation, lookRotation) < RotationDeadZone)
 				Controller.Move(direction * Speed * Time.deltaTime);
+
+			Animator.SetBool(AnimatorParams.Alarmed, GameManager.Instance.Alarmed);
 		}
 
 		HandleRaycasts();
@@ -90,29 +91,28 @@ public class GuardController : MonoBehaviour
 		originLower.y -= 0.35f;
 		for (int i = 0; i < RayCount; i++)
 		{
-			if (Physics.Raycast(originUpper, Utils.GetVectorFromAngle(angle), out RaycastHit hit, ViewDistance, ViewConeLayerMask))
+			if (CheckRaycast(originUpper, angle) || CheckRaycast(originLower, angle))
 			{
-				if (Utils.ShouldBeAlterted(hit))
-				{
-					detectedSomething = true;
-					break;
-				}
+				detectedSomething = true;
+				break;
 			}
-			Debug.DrawRay(originUpper, Utils.GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
-
-			if (Physics.Raycast(originLower, Utils.GetVectorFromAngle(angle), out hit, ViewDistance, ViewConeLayerMask))
-			{
-				if (Utils.ShouldBeAlterted(hit))
-				{
-					detectedSomething = true;
-					break;
-				}
-			}
-			Debug.DrawRay(originLower, Utils.GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
 			angle -= AngleIncrease;
 		}
 
 		HandleDetection(detectedSomething);
+	}
+
+	private bool CheckRaycast(Vector3 origin, float angle)
+	{
+		if (Physics.Raycast(origin, Utils.GetVectorFromAngle(angle), out RaycastHit hit, ViewDistance, ViewConeLayerMask))
+		{
+			if (Utils.ShouldBeAlterted(hit))
+			{
+				return true;
+			}
+		}
+		Debug.DrawRay(origin, Utils.GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
+		return false;
 	}
 
 	private void HandleDetection(bool detected)
