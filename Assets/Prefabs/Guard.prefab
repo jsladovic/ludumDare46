@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060ad64a668612a4d8c3d30d6fee6c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animator: {fileID: 0}
+  Animator: {fileID: 139476300987078358}
   Controller: {fileID: 3035201830401901042}
   PathParent: {fileID: 0}
   DefaultSpeed: 2.5
@@ -237,7 +237,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 9f59686eaa7710c4abb38ae4db0750eb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.08
+      value: -0.98
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9f59686eaa7710c4abb38ae4db0750eb,
         type: 3}
@@ -315,6 +315,12 @@ GameObject:
 --- !u!4 &8026970573651262380 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 9f59686eaa7710c4abb38ae4db0750eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 3035201830245535926}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &139476300987078358 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 9f59686eaa7710c4abb38ae4db0750eb,
     type: 3}
   m_PrefabInstance: {fileID: 3035201830245535926}
   m_PrefabAsset: {fileID: 0}
