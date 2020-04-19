@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GuardController : MonoBehaviour
 {
+	public Animator Animator;
 	public CharacterController Controller;
 	public Transform PathParent;
 	private Transform[] Path;
@@ -72,6 +71,8 @@ public class GuardController : MonoBehaviour
 
 			if (Quaternion.Angle(transform.rotation, lookRotation) < RotationDeadZone)
 				Controller.Move(direction * Speed * Time.deltaTime);
+
+			Animator.SetBool(AnimatorParams.Alarmed, GameManager.Instance.Alarmed);
 		}
 
 		HandleRaycasts();
