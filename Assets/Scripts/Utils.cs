@@ -28,4 +28,5 @@ public static class AnimatorParams
 {
 	public const string Moving = "Moving";
 	public const string Carrying = "Carrying";
+	public const string Defeat = "Defeat";
 }

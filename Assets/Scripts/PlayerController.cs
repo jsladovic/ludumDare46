@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+	public static PlayerController Instance;
+
 	public Animator Animator;
 
 	public CharacterController Controller;
@@ -28,8 +30,18 @@ public class PlayerController : MonoBehaviour
 	private float ExtractionTimeRemaining;
 	private const float MaxExtractionTime = 1.0f;
 
+	public bool Defeated { get; private set; }
+
+	private void Awake()
+	{
+		Instance = this;
+	}
+
 	void Update()
 	{
+		if (Defeated)
+			return;
+
 		if (ExtractionStarted == true)
 		{
 			ExtractionTimeRemaining -= Time.deltaTime;
@@ -121,5 +133,11 @@ public class PlayerController : MonoBehaviour
 	public void ExitedExtractionPoint()
 	{
 		ExtractionPoint = null;
+	}
+
+	public void Defeat()
+	{
+		Defeated = true;
+		Animator.SetTrigger(AnimatorParams.Defeat);
 	}
 }

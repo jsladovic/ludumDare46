@@ -58,7 +58,7 @@ public class GuardController : MonoBehaviour
 
 	void Update()
 	{
-		if (Stunned)
+		if (Stunned || PlayerController.Instance.Defeated)
 			return;
 
 		if (Path != null && DetectedSomething == false)
@@ -93,12 +93,14 @@ public class GuardController : MonoBehaviour
 			if (Physics.Raycast(originUpper, Utils.GetVectorFromAngle(angle), out RaycastHit hit, ViewDistance, ViewConeLayerMask))
 			{
 				detectedSomething = true;
+				break;
 			}
 			Debug.DrawRay(originUpper, Utils.GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
 
 			if (Physics.Raycast(originLower, Utils.GetVectorFromAngle(angle), out hit, ViewDistance, ViewConeLayerMask))
 			{
 				detectedSomething = true;
+				break;
 			}
 			Debug.DrawRay(originLower, Utils.GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
 			angle -= AngleIncrease;
@@ -120,8 +122,7 @@ public class GuardController : MonoBehaviour
 			if (DetectionTimer <= 0.0f)
 			{
 				DetectionTimer = 0.0f;
-				// Game over
-				//Debug.Log($"game over");
+				PlayerController.Instance.Defeat();
 			}
 		}
 		else if (DetectedSomething == false && detected == true)

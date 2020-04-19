@@ -48,7 +48,7 @@ public class CameraController : MonoBehaviour
 
 	void Update()
 	{
-		if (Disabled == true)
+		if (Disabled == true || PlayerController.Instance.Defeated)
 			return;
 
 		if (DetectedSomething == false)
@@ -119,8 +119,7 @@ public class CameraController : MonoBehaviour
 			if (DetectionTimer <= 0.0f)
 			{
 				DetectionTimer = 0.0f;
-				// Game over
-				//Debug.Log($"game over");
+				PlayerController.Instance.Defeat();
 			}
 		}
 		else if (DetectedSomething == false && detected == true)
