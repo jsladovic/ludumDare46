@@ -79,49 +79,29 @@ public class CameraController : MonoBehaviour
 		bool detectedSomething = false;
 		for (int i = 0; i < RayCount; i++)
 		{
-			if (Physics.Raycast(Light.transform.position, Utils.GetVectorFromAngle(angle, StartingRaycastOffset), out RaycastHit hit, ViewDistance, ViewConeLayerMask))
+			if (CheckRaycast(angle, StartingRaycastOffset) || CheckRaycast(angle, EndingRaycastOffset)
+				|| CheckRaycast(angle, MiddleUpperRaycastOffset) || CheckRaycast(angle, MiddleLowerRaycastOffset))
 			{
-				if (Utils.ShouldBeAlterted(hit))
-				{
-					detectedSomething = true;
-					break;
-				}
+				detectedSomething = true;
+				break;
 			}
-			Debug.DrawRay(Light.transform.position, Utils.GetVectorFromAngle(angle, StartingRaycastOffset) * ViewDistance, Color.cyan);
-
-			if (Physics.Raycast(Light.transform.position, Utils.GetVectorFromAngle(angle, EndingRaycastOffset), out hit, ViewDistance, ViewConeLayerMask))
-			{
-				if (Utils.ShouldBeAlterted(hit))
-				{
-					detectedSomething = true;
-					break;
-				}
-			}
-			Debug.DrawRay(Light.transform.position, Utils.GetVectorFromAngle(angle, EndingRaycastOffset) * ViewDistance, Color.cyan);
-
-			if (Physics.Raycast(Light.transform.position, Utils.GetVectorFromAngle(angle, MiddleUpperRaycastOffset), out hit, ViewDistance, ViewConeLayerMask))
-			{
-				if (Utils.ShouldBeAlterted(hit))
-				{
-					detectedSomething = true;
-					break;
-				}
-			}
-			Debug.DrawRay(Light.transform.position, Utils.GetVectorFromAngle(angle, MiddleUpperRaycastOffset) * ViewDistance, Color.cyan);
-
-			if (Physics.Raycast(Light.transform.position, Utils.GetVectorFromAngle(angle, MiddleLowerRaycastOffset), out hit, ViewDistance, ViewConeLayerMask))
-			{
-				if (Utils.ShouldBeAlterted(hit))
-				{
-					detectedSomething = true;
-					break;
-				}
-			}
-			Debug.DrawRay(Light.transform.position, Utils.GetVectorFromAngle(angle, MiddleLowerRaycastOffset) * ViewDistance, Color.cyan);
 			angle -= AngleIncrease;
 		}
 
 		HandleDetection(detectedSomething);
+	}
+
+	private bool CheckRaycast(float angle, float offset)
+	{
+		if (Physics.Raycast(Light.transform.position, Utils.GetVectorFromAngle(angle, offset), out RaycastHit hit, ViewDistance, ViewConeLayerMask))
+		{
+			if (Utils.ShouldBeAlterted(hit))
+			{
+				return true;
+			}
+		}
+		Debug.DrawRay(Light.transform.position, Utils.GetVectorFromAngle(angle, offset) * ViewDistance, Color.cyan);
+		return false;
 	}
 
 	private void HandleDetection(bool detected)
