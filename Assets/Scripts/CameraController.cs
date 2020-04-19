@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 {
 	public Light Light;
 	public LayerMask ViewConeLayerMask;
-	public Transform CameraHolder;
+	public Transform Camera;
 
 	private float Offset => GameManager.Instance.Alarmed ? AlarmedOffset : DefaultOffset;
 	private float RotationSpeed => GameManager.Instance.Alarmed ? AlarmedRotationSpeed : DefaultRotationSpeed;
@@ -55,7 +55,7 @@ public class CameraController : MonoBehaviour
 		{
 			float changeInRotation = (IncreasingRotation ? 1.0f : -1.0f) * RotationSpeed * Time.deltaTime;
 			Light.transform.Rotate(Vector3.up, changeInRotation);
-			CameraHolder.Rotate(Vector3.up, changeInRotation);
+			Camera.Rotate(Vector3.back, changeInRotation);
 			TotalRotation += changeInRotation;
 			if (IncreasingRotation == true && TotalRotation >= Offset)
 			{
