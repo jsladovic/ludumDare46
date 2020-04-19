@@ -81,25 +81,41 @@ public class CameraController : MonoBehaviour
 		{
 			if (Physics.Raycast(Light.transform.position, Utils.GetVectorFromAngle(angle, StartingRaycastOffset), out RaycastHit hit, ViewDistance, ViewConeLayerMask))
 			{
-				detectedSomething = true;
+				if (Utils.ShouldBeAlterted(hit))
+				{
+					detectedSomething = true;
+					break;
+				}
 			}
 			Debug.DrawRay(Light.transform.position, Utils.GetVectorFromAngle(angle, StartingRaycastOffset) * ViewDistance, Color.cyan);
 
 			if (Physics.Raycast(Light.transform.position, Utils.GetVectorFromAngle(angle, EndingRaycastOffset), out hit, ViewDistance, ViewConeLayerMask))
 			{
-				detectedSomething = true;
+				if (Utils.ShouldBeAlterted(hit))
+				{
+					detectedSomething = true;
+					break;
+				}
 			}
 			Debug.DrawRay(Light.transform.position, Utils.GetVectorFromAngle(angle, EndingRaycastOffset) * ViewDistance, Color.cyan);
 
 			if (Physics.Raycast(Light.transform.position, Utils.GetVectorFromAngle(angle, MiddleUpperRaycastOffset), out hit, ViewDistance, ViewConeLayerMask))
 			{
-				detectedSomething = true;
+				if (Utils.ShouldBeAlterted(hit))
+				{
+					detectedSomething = true;
+					break;
+				}
 			}
 			Debug.DrawRay(Light.transform.position, Utils.GetVectorFromAngle(angle, MiddleUpperRaycastOffset) * ViewDistance, Color.cyan);
 
 			if (Physics.Raycast(Light.transform.position, Utils.GetVectorFromAngle(angle, MiddleLowerRaycastOffset), out hit, ViewDistance, ViewConeLayerMask))
 			{
-				detectedSomething = true;
+				if (Utils.ShouldBeAlterted(hit))
+				{
+					detectedSomething = true;
+					break;
+				}
 			}
 			Debug.DrawRay(Light.transform.position, Utils.GetVectorFromAngle(angle, MiddleLowerRaycastOffset) * ViewDistance, Color.cyan);
 			angle -= AngleIncrease;

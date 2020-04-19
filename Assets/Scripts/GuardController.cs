@@ -92,15 +92,21 @@ public class GuardController : MonoBehaviour
 		{
 			if (Physics.Raycast(originUpper, Utils.GetVectorFromAngle(angle), out RaycastHit hit, ViewDistance, ViewConeLayerMask))
 			{
-				detectedSomething = true;
-				break;
+				if (Utils.ShouldBeAlterted(hit))
+				{
+					detectedSomething = true;
+					break;
+				}
 			}
 			Debug.DrawRay(originUpper, Utils.GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
 
 			if (Physics.Raycast(originLower, Utils.GetVectorFromAngle(angle), out hit, ViewDistance, ViewConeLayerMask))
 			{
-				detectedSomething = true;
-				break;
+				if (Utils.ShouldBeAlterted(hit))
+				{
+					detectedSomething = true;
+					break;
+				}
 			}
 			Debug.DrawRay(originLower, Utils.GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
 			angle -= AngleIncrease;

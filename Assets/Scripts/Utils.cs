@@ -22,6 +22,11 @@ public static class Utils
 			n += 360.0f;
 		return n;
 	}
+
+	public static bool ShouldBeAlterted(RaycastHit hit)
+	{
+		return hit.collider.tag == "Player" || hit.collider.tag == "Creature";
+	}
 }
 
 public static class AnimatorParams
