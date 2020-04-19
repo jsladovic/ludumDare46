@@ -23,3 +23,9 @@ public static class Utils
 		return n;
 	}
 }
+
+public static class AnimatorParams
+{
+	public const string Moving = "Moving";
+	public const string Carrying = "Carrying";
+}

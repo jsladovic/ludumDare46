@@ -122,13 +122,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 3
+  m_Height: 2.2
   m_Radius: 0.6
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!114 &6148482095236908029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac2248974924b24f8da4a09c2390e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Animator: {fileID: 9125274625850578178}
   Controller: {fileID: 6148482095236908031}
   CarryPosition: {fileID: 1701906173}
   DropPosition: {fileID: 434077851}
@@ -235,13 +236,7 @@ PrefabInstance:
     - target: {fileID: -6057140222963153312, guid: e290c1d101c83a046ad4fc2051246427,
         type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
-        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
-        'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightFoot'\n\tand
-        more ...\n\tFrom animation clip 'mixamo.com'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: -6008434836159022525, guid: e290c1d101c83a046ad4fc2051246427,
         type: 3}
@@ -271,7 +266,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: e290c1d101c83a046ad4fc2051246427,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e290c1d101c83a046ad4fc2051246427,
         type: 3}
@@ -524,6 +519,12 @@ GameObject:
 --- !u!4 &1164601810063800440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: e290c1d101c83a046ad4fc2051246427,
+    type: 3}
+  m_PrefabInstance: {fileID: 6148482094394282850}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &9125274625850578178 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: e290c1d101c83a046ad4fc2051246427,
     type: 3}
   m_PrefabInstance: {fileID: 6148482094394282850}
   m_PrefabAsset: {fileID: 0}

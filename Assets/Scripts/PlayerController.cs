@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+	public Animator Animator;
+	private bool Moving;
+
 	public CharacterController Controller;
 	private float Speed => CarriedCreature == null ? DefaultSpeed : CarryingSpeed;
 	private float RotationSpeed => CarriedCreature == null ? DefaultRotationSpeed : CarryingRotationSpeed;
@@ -25,11 +28,6 @@ public class PlayerController : MonoBehaviour
 	private bool ExtractionStarted;
 	private float ExtractionTimeRemaining;
 	private const float MaxExtractionTime = 1.0f;
-
-	void Start()
-	{
-
-	}
 
 	void Update()
 	{
@@ -63,6 +61,8 @@ public class PlayerController : MonoBehaviour
 			Controller.Move(direction * Speed * Time.deltaTime);
 		}
 
+		Animator.SetBool(AnimatorParams.Moving, direction != Vector3.zero);
+
 		if (Input.GetKeyDown(KeyCode.E))
 		{
 			HandlePickUp();
@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
 
 					CarriedCreature.transform.SetParent(transform);
 					CarriedCreature.transform.position = CarryPosition.position;
+					Animator.SetBool(AnimatorParams.Carrying, true);
 				}
 			}
 		}
@@ -105,6 +106,7 @@ public class PlayerController : MonoBehaviour
 			else
 			{
 				CarriedCreature.transform.position = DropPosition.position;
+				Animator.SetBool(AnimatorParams.Carrying, false);
 			}
 
 			CarriedCreature.transform.SetParent(transform.parent);
