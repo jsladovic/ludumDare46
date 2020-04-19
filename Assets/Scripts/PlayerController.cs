@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
 			if (ExtractionTimeRemaining <= 0.0f)
 			{
 				Debug.Log("Player extracted");
+				LevelManager.Instance.FinishLevel();
 				ExtractionStarted = false;
 			}
 		}

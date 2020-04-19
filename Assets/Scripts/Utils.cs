@@ -5,6 +5,8 @@ public static class Utils
 	public static readonly Color DefaultFlashlightColor = Color.white;
 	public static readonly Color DetectedFlashlightColor = Color.red;
 
+	public const string LevelUnlockedPrefsKey = "LevelUnlocked";
+
 	public static Vector3 GetVectorFromAngle(float angle, float yOffset = 0.0f)
 	{
 		float angleRad = angle * Mathf.Deg2Rad;
