@@ -42,5 +42,6 @@ public class ExtractionPoint : MonoBehaviour
 	{
 		creature.transform.position = SafeZoneSpots[TakenSafeZoneSpots].position;
 		TakenSafeZoneSpots++;
+		LevelManager.Instance.CreatureExtracted();
 	}
 }
