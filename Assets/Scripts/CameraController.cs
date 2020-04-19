@@ -34,6 +34,11 @@ public class CameraController : MonoBehaviour
 	private float DetectionTimer;
 	private const float MaxDetectionTimer = 1.0f;
 
+	private float DetectionTimerSpeed => GameManager.Instance.Alarmed ? AlarmedDefectionTimerSpeed : DefaultDetectionTimerSpeed;
+	private const float DefaultDetectionTimerSpeed = 0.5f;
+	private const float AlarmedDefectionTimerSpeed = 1.0f;
+	private const float DetectionTimerRecoverySpeed = 0.5f;
+
 	private bool Disabled;
 
 	void Start()
@@ -110,7 +115,7 @@ public class CameraController : MonoBehaviour
 		}
 		else if (DetectedSomething == true && detected == true)
 		{
-			DetectionTimer -= Time.deltaTime;
+			DetectionTimer -= Time.deltaTime * DetectionTimerSpeed;
 			if (DetectionTimer <= 0.0f)
 			{
 				DetectionTimer = 0.0f;
@@ -124,7 +129,7 @@ public class CameraController : MonoBehaviour
 		}
 		else if (DetectionTimer < MaxDetectionTimer)
 		{
-			DetectionTimer += Time.deltaTime;
+			DetectionTimer += Time.deltaTime * DetectionTimerRecoverySpeed;
 			if (DetectionTimer > MaxDetectionTimer)
 				DetectionTimer = MaxDetectionTimer;
 		}

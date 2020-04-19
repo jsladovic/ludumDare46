@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	public Animator Animator;
-	private bool Moving;
 
 	public CharacterController Controller;
 	private float Speed => CarriedCreature == null ? DefaultSpeed : CarryingSpeed;
