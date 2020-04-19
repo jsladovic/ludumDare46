@@ -8,14 +8,22 @@ public class CameraController : MonoBehaviour
 	public Light Light;
 	public LayerMask ViewConeLayerMask;
 
-	public float Offset = 45.0f;
-	private const float RotationSpeed = 25.0f;
+	private float Offset => GameManager.Instance.Alarmed ? AlarmedOffset : DefaultOffset;
+	private float RotationSpeed => GameManager.Instance.Alarmed ? AlarmedRotationSpeed : DefaultRotationSpeed;
+
+	public float DefaultOffset = 45.0f;
+	public float DefaultRotationSpeed = 25.0f;
+
+	public float AlarmedOffset = 60.0f;
+	public float AlarmedRotationSpeed = 45.0f;
+
 	private bool IncreasingRotation;
 	private float TotalRotation;
-	public float StartingRaycastOffset = -1.5f;
-	public float MiddleUpperRaycastOffset = -0.9f;
-	public float MiddleLowerRaycastOffset = -0.6f;
-	public float EndingRaycastOffset = -0.42f;
+
+	private const float StartingRaycastOffset = -1.5f;
+	private const float MiddleUpperRaycastOffset = -0.9f;
+	private const float MiddleLowerRaycastOffset = -0.6f;
+	private const float EndingRaycastOffset = -0.42f;
 
 	public float FieldOfView = 65.0f;
 	public int RayCount = 15;

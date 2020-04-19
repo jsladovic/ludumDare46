@@ -6,8 +6,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	public CharacterController Controller;
-	private const float Speed = 2.0f;
-	private const float RotationSpeed = 15.0f;
+	private float Speed => CarriedCreature == null ? DefaultSpeed : CarryingSpeed;
+	private float RotationSpeed => CarriedCreature == null ? DefaultRotationSpeed : CarryingRotationSpeed;
+
+	private const float DefaultSpeed = 3.0f;
+	private const float DefaultRotationSpeed = 15.0f;
+
+	private const float CarryingSpeed = 2.0f;
+	private const float CarryingRotationSpeed = 12.5f;
 
 	private const float PickUpRadius = 1.5f;
 

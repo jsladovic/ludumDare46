@@ -8,8 +8,15 @@ public class GuardController : MonoBehaviour
 	public Transform PathParent;
 	private Transform[] Path;
 
-	private const float Speed = 2.5f;
-	private const float RotationSpeed = 10.0f;
+	public float Speed => GameManager.Instance.Alarmed ? AlarmedSpeed : DefaultSpeed;
+	public float RotationSpeed => GameManager.Instance.Alarmed ? AlarmedRotationSpeed : DefaultRotationSpeed;
+
+	public float DefaultSpeed = 2.5f;
+	public float DefaultRotationSpeed = 10.0f;
+
+	public float AlarmedSpeed = 5.0f;
+	public float AlarmedRotationSpeed = 15.0f;
+
 	private const float RotationDeadZone = 5.0f;
 	public LayerMask ViewConeLayerMask;
 
