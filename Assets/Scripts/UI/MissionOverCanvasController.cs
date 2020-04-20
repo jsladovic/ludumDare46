@@ -8,8 +8,8 @@ public class MissionOverCanvasController : MonoBehaviour
 
 	private const string CowardText = "Well what can you say about this attempt? You tried, I guess. And by tried I mean chickened out at the first opportunity. You do realize people stayed awake until 3am to make this game? And yet you play it like this...";
 	private const string SuccessText = "It's an honor watching you work, like a modern day Da Vinci or Shakespear. Take a bow, you magnificent human being!";
-	private const string DefeatText = "A noble attempt, but alas a sub-par execution. We'll try again once your prison sentance is over, shouldn't be more than a few years with good behaviour.";
-	private const string CreatureCapturedText = "The guards captured the poor thing and brought him to a maximum security cell. He'll spend the rest of his life on a hamster wheel. Fortunately, that shouldn't be too long...";
+	private const string DefeatText = "A noble attempt, but a sub-par execution. We'll try again once your prison sentance is over, shouldn't be more than a few years with good behaviour.";
+	private const string CreatureCapturedText = "The guards captured the poor thing and brought him to a maximum security cell. He'll spend the rest of his life on a giant hamster wheel. Fortunately, I don't think he'll live all that long...";
 
 	private void Awake()
 	{

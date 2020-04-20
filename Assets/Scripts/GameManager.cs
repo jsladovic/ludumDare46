@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
 	}
 
 	void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
+	{
+		if (Input.GetKeyDown(KeyCode.P))
 		{
 			RaiseSecurityAwareness();
 		}
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 		{
 			TogglePause();
 		}
-    }
+	}
 
 	private void TogglePause()
 	{
@@ -102,32 +102,43 @@ public class GameManager : MonoBehaviour
 
 	public void DisplayDefeatMessage(bool playerDetected, MessageSource source)
 	{
+		Outcome outcome = Outcome.Defeat;
 		if (source == MessageSource.Guard)
 		{
 			if (playerDetected)
 			{
-				DisplayMessage("Hey there! You! Stop or I'll shoot!", source);
+				DisplayMessage("Hey there! You! Stop or I'll shoot!", source, 3);
 			}
 			else
 			{
-				DisplayMessage("Calling all guards,runaway creature found, moving to maximum security!", source);
+				outcome = Outcome.CreatureCaptured;
+				DisplayMessage("Runaway creature detected, moving it to maximum security!", source, 3);
 			}
 		}
 		else if (source == MessageSource.Camera)
 		{
 			if (playerDetected)
 			{
-				DisplayMessage("Hey there! You! Stop or I'll shoot... bolts of electricity... Yeah, you don't want to test me!", source);
+				DisplayMessage("Hey there! You! Stop or I'll shoot... My camera rays! Yeah, you don't want to test me!", source, 3);
 			}
 			else
 			{
-				DisplayMessage("Calling all guards, found a runaway creature, please transport to maximum security!", source);
+				outcome = Outcome.CreatureCaptured;
+				DisplayMessage("Can one of you lazy bastards come and pick this creature up?", source, 3);
 			}
 		}
 		else
 		{
 			throw new UnityException($"Player can't be defeated by {source.ToString()}");
 		}
+
+		StartCoroutine(DefeatCoroutine(outcome));
+	}
+
+	private IEnumerator DefeatCoroutine(Outcome outcome)
+	{
+		yield return new WaitForSeconds(4);
+		LevelManager.Instance.MissionOverCanvas.Display(outcome);
 	}
 }
 
