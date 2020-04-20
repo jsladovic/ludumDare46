@@ -19403,7 +19403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350181409}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 74.687225, y: -6.2963758, z: -71.726814}
+  m_LocalPosition: {x: 74.687225, y: -6.29, z: -71.726814}
   m_LocalScale: {x: 2, y: 2, z: -2}
   m_Children: []
   m_Father: {fileID: 1738277242}
@@ -30848,10 +30848,10 @@ MonoBehaviour:
   MessageCanvas: {fileID: 438940673}
   MessageText: {fileID: 322041740}
   CallerSprite: {fileID: 898697537}
-  PlayerSprite: {fileID: 21300000, guid: de1c98a8938445644b24d80854028063, type: 3}
-  DriverSprite: {fileID: 21300000, guid: 00925d93792ec8e4b95dfa970b629d24, type: 3}
-  GuardSprite: {fileID: 21300000, guid: b1021de43a20a1c458bfe461a9f18b66, type: 3}
-  CameraSprite: {fileID: 21300000, guid: 79356b80ddfe7b8408d6704ef53f5c0c, type: 3}
+  PlayerSprite: {fileID: 21300000, guid: 2dc1cd23d23d50a449379ca0a22ef650, type: 3}
+  DriverSprite: {fileID: 21300000, guid: 0ba884ce638432e41aaf49e36d898e4d, type: 3}
+  GuardSprite: {fileID: 21300000, guid: 3058a53276aeeda4c80f6f09f9d5788a, type: 3}
+  CameraSprite: {fileID: 21300000, guid: b5e1111cd9abf214ea312c28fca35e7c, type: 3}
 --- !u!114 &2045267526
 MonoBehaviour:
   m_ObjectHideFlags: 0
