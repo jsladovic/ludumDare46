@@ -73,6 +73,11 @@ public class GuardController : MonoBehaviour
 				Controller.Move(direction * Speed * Time.deltaTime);
 
 			Animator.SetBool(AnimatorParams.Alarmed, GameManager.Instance.Alarmed);
+			Animator.enabled = true;
+		}
+		else
+		{
+			Animator.enabled = false;
 		}
 
 		HandleRaycasts();
