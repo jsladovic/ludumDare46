@@ -11,6 +11,6 @@ public class Level3Controller : MonoBehaviour
 	private IEnumerator DisplayIntroMessage()
 	{
 		yield return new WaitForSeconds(1.0f);
-		GameManager.Instance.DisplayMessage("George Gilbert should be right ahead. Good luck.", MessageSource.Driver);
+		GameManager.Instance.DisplayMessage("George Gilbert should be straight ahead. Good luck.", MessageSource.Driver);
 	}
 }
