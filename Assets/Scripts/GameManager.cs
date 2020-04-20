@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
 		{
 			if (playerDetected)
 			{
-				DisplayMessage("Hey there! You! Stop or I'll shoot!", source, 3);
+				DisplayMessage("You there, the one with the thief outfit! Stop or I'll shoot!", source, 3);
 			}
 			else
 			{
@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
 		{
 			if (playerDetected)
 			{
-				DisplayMessage("Hey there! You! Stop or I'll shoot... My camera rays! Yeah, you don't want to test me!", source, 3);
+				DisplayMessage("Stop or I'll shoot... My camera rays! Yeah, you don't want to test me!", source, 3);
 			}
 			else
 			{
