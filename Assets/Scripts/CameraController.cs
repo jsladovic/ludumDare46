@@ -95,7 +95,7 @@ public class CameraController : MonoBehaviour
 	{
 		if (Physics.Raycast(Light.transform.position, Utils.GetVectorFromAngle(angle, offset), out RaycastHit hit, ViewDistance, ViewConeLayerMask))
 		{
-			if (Utils.ShouldBeAlterted(hit))
+			if (Utils.ShouldBeAlterted(hit, false))
 			{
 				return true;
 			}

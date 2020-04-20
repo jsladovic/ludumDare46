@@ -88,6 +88,36 @@ public class GameManager : MonoBehaviour
 		yield return new WaitForSeconds(seconds);
 		MessageCanvas.enabled = false;
 	}
+
+	public void DisplayDefeatMessage(bool playerDetected, MessageSource source)
+	{
+		if (source == MessageSource.Guard)
+		{
+			if (playerDetected)
+			{
+				DisplayMessage("Hey there! You! Stop or I'll shoot!", source);
+			}
+			else
+			{
+				DisplayMessage("Calling all guards,runaway creature found, moving to maximum security!", source);
+			}
+		}
+		else if (source == MessageSource.Camera)
+		{
+			if (playerDetected)
+			{
+				DisplayMessage("Hey there! You! Stop or I'll shoot... bolts of electricity... Yeah, you don't want to test me!", source);
+			}
+			else
+			{
+				DisplayMessage("Calling security, found a runaway creature, please transport to maximum security!", source);
+			}
+		}
+		else
+		{
+			throw new UnityException($"Player can't be defeated by {source.ToString()}");
+		}
+	}
 }
 
 public enum MessageSource

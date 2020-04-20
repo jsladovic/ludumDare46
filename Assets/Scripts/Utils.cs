@@ -23,8 +23,10 @@ public static class Utils
 		return n;
 	}
 
-	public static bool ShouldBeAlterted(RaycastHit hit)
+	public static bool ShouldBeAlterted(RaycastHit hit, bool onlyPlayer)
 	{
+		if (onlyPlayer)
+			return hit.collider.tag == "Player";
 		return hit.collider.tag == "Player" || hit.collider.tag == "Creature";
 	}
 }

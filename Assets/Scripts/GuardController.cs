@@ -80,33 +80,35 @@ public class GuardController : MonoBehaviour
 
 	private void HandleRaycasts()
 	{
+		HandleDetection(ShootRaycasts());
+	}
+
+	private bool ShootRaycasts(bool onlyPlayer = false)
+	{
 		float angle = Utils.GetAngleFromVector(transform.forward) + FieldOfView / 2.0f;
 		if (angle > 360.0f)
 			angle -= 360.0f;
 
-		bool detectedSomething = false;
 		Vector3 originUpper = transform.position;
 		Vector3 originLower = transform.position;
 		originUpper.y += 0.35f;
 		originLower.y -= 0.35f;
 		for (int i = 0; i < RayCount; i++)
 		{
-			if (CheckRaycast(originUpper, angle) || CheckRaycast(originLower, angle))
+			if (CheckRaycast(originUpper, angle, onlyPlayer) || CheckRaycast(originLower, angle, onlyPlayer))
 			{
-				detectedSomething = true;
-				break;
+				return true;
 			}
 			angle -= AngleIncrease;
 		}
-
-		HandleDetection(detectedSomething);
+		return false;
 	}
 
-	private bool CheckRaycast(Vector3 origin, float angle)
+	private bool CheckRaycast(Vector3 origin, float angle, bool onlyPlayer)
 	{
 		if (Physics.Raycast(origin, Utils.GetVectorFromAngle(angle), out RaycastHit hit, ViewDistance, ViewConeLayerMask))
 		{
-			if (Utils.ShouldBeAlterted(hit))
+			if (Utils.ShouldBeAlterted(hit, onlyPlayer))
 			{
 				return true;
 			}
@@ -128,6 +130,7 @@ public class GuardController : MonoBehaviour
 			if (DetectionTimer <= 0.0f)
 			{
 				DetectionTimer = 0.0f;
+				GameManager.Instance.DisplayDefeatMessage(IsPlayerHitByRaycasts(), MessageSource.Guard);
 				PlayerController.Instance.Defeat();
 			}
 		}
@@ -143,6 +146,11 @@ public class GuardController : MonoBehaviour
 		}
 
 		Flashlight.color = Color.Lerp(Utils.DetectedFlashlightColor, Utils.DefaultFlashlightColor, DetectionTimer);
+	}
+
+	private bool IsPlayerHitByRaycasts()
+	{
+		return ShootRaycasts(true);
 	}
 
 	private void OnTriggerEnter(Collider other)
