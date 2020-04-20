@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 	private const float DefaultSpeed = 3.0f;
 	private const float DefaultRotationSpeed = 15.0f;
 
-	private const float CarryingSpeed = 2.5f;
+	private const float CarryingSpeed = 2.75f;
 	private const float CarryingRotationSpeed = 12.5f;
 
 	private const float PickUpRadius = 1.5f;
