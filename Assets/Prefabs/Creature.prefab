@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3318466668123241232}
   - component: {fileID: 3318466668123241233}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Creature
   m_TagString: Creature
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3318466668562233772}
   - component: {fileID: 3944695583178627263}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Model
   m_TagString: Creature
   m_Icon: {fileID: 0}
@@ -171,6 +171,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CreatureBasic
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 10a45419df80fc54d8bd293ffb119f60,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10a45419df80fc54d8bd293ffb119f60, type: 3}

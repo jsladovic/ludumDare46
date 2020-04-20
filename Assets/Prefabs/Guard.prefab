@@ -196,7 +196,7 @@ MonoBehaviour:
   AlarmedRotationSpeed: 15
   ViewConeLayerMask:
     serializedVersion: 2
-    m_Bits: 4864
+    m_Bits: 3584
   Flashlight: {fileID: 1919316012}
   FieldOfView: 55
   RayCount: 25

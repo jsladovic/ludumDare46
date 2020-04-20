@@ -48,8 +48,9 @@ MonoBehaviour:
   Light: {fileID: 1853749636035537511}
   ViewConeLayerMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 3584
   Camera: {fileID: 530370234134579829}
+  OnlyActiveWhenAlarmed: 0
   DefaultOffset: 45
   DefaultRotationSpeed: 25
   AlarmedOffset: 60
