@@ -6405,7 +6405,7 @@ PrefabInstance:
     - target: {fileID: 6297870676506300024, guid: 044826137491fe94f8d50e0645897ef3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.92
+      value: 29.2
       objectReference: {fileID: 0}
     - target: {fileID: 6297870676506300024, guid: 044826137491fe94f8d50e0645897ef3,
         type: 3}
@@ -30228,7 +30228,7 @@ PrefabInstance:
     - target: {fileID: 6297870676506300027, guid: 044826137491fe94f8d50e0645897ef3,
         type: 3}
       propertyPath: Text
-      value: There you are! You had me worried for a minute.
+      value: Did... hear... about... guards?
       objectReference: {fileID: 0}
     - target: {fileID: 6297870676506300027, guid: 044826137491fe94f8d50e0645897ef3,
         type: 3}
@@ -30808,7 +30808,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045267520}
-  m_LocalRotation: {x: 0.5257311, y: -0.000000061737616, z: 0.00000003815616, w: 0.85065085}
+  m_LocalRotation: {x: 0.5257311, y: -0.00000006173763, z: 0.000000038156166, w: 0.85065085}
   m_LocalPosition: {x: -7.54, y: 25.21, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -31280,7 +31280,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2065418195}
-  m_LocalRotation: {x: 0.5257311, y: -0.000000061737616, z: 0.00000003815616, w: 0.85065085}
+  m_LocalRotation: {x: 0.5257311, y: -0.00000006173763, z: 0.000000038156166, w: 0.85065085}
   m_LocalPosition: {x: -7.54, y: 25.21, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
