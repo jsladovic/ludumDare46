@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class GameManager : MonoBehaviour
 
 	public Canvas MessageCanvas;
 	public TextMeshProUGUI MessageText;
+	public Image CallerSprite;
+	public Sprite PlayerSprite;
+	public Sprite DriverSprite;
+	public Sprite GuardSprite;
+	public Sprite CameraSprite;
 
 	private Coroutine DisplayMessageCoroutine;
 
@@ -90,8 +96,25 @@ public class GameManager : MonoBehaviour
 			StopCoroutine(DisplayMessageCoroutine);
 		}
 		MessageText.text = message;
+		CallerSprite.sprite = GetSourceSprite(source);
 		MessageCanvas.enabled = true;
 		DisplayMessageCoroutine = StartCoroutine(HideMessageCanvas(seconds));
+	}
+
+	public Sprite GetSourceSprite(MessageSource source)
+	{
+		switch (source)
+		{
+			case MessageSource.Camera:
+				return CameraSprite;
+			case MessageSource.Driver:
+				return DriverSprite;
+			case MessageSource.Guard:
+				return GuardSprite;
+			case MessageSource.Player:
+				return PlayerSprite;
+		}
+		throw new UnityException($"Unknown source {source.ToString()}");
 	}
 
 	private IEnumerator HideMessageCanvas(int seconds)
