@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
 	{
 		MessageText.text = message;
 		MessageCanvas.enabled = true;
-		StartCoroutine(HideMessageCanvas(3));
+		StartCoroutine(HideMessageCanvas(5));
 	}
 
 	private IEnumerator HideMessageCanvas(int seconds)
@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
 			}
 			else
 			{
-				DisplayMessage("Calling security, found a runaway creature, please transport to maximum security!", source);
+				DisplayMessage("Calling all guards, found a runaway creature, please transport to maximum security!", source);
 			}
 		}
 		else

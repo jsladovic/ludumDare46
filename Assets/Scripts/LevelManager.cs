@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
 			GameManager.Instance.DisplayMessage("All of this is a bit too much for you, isn't it? Don't worry, we'll find you a nice simple job in accounting...", MessageSource.Driver);
 		}
 
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(5);
 		SceneLoader.LoadScene(0);
 	}
 }

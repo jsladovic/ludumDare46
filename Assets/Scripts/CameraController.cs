@@ -72,30 +72,33 @@ public class CameraController : MonoBehaviour
 
 	private void HandleRaycasts()
 	{
+		bool detectedSomething = ShootRaycasts();
+		HandleDetection(detectedSomething);
+	}
+
+	private bool ShootRaycasts(bool onlyPlayer = false)
+	{
 		float angle = Utils.GetAngleFromVector(Light.transform.forward) + FieldOfView / 2.0f;
 		if (angle > 360.0f)
 			angle -= 360.0f;
 
-		bool detectedSomething = false;
 		for (int i = 0; i < RayCount; i++)
 		{
-			if (CheckRaycast(angle, StartingRaycastOffset) || CheckRaycast(angle, EndingRaycastOffset)
-				|| CheckRaycast(angle, MiddleUpperRaycastOffset) || CheckRaycast(angle, MiddleLowerRaycastOffset))
+			if (CheckRaycast(angle, StartingRaycastOffset, onlyPlayer) || CheckRaycast(angle, EndingRaycastOffset, onlyPlayer)
+				|| CheckRaycast(angle, MiddleUpperRaycastOffset, onlyPlayer) || CheckRaycast(angle, MiddleLowerRaycastOffset, onlyPlayer))
 			{
-				detectedSomething = true;
-				break;
+				return true;
 			}
 			angle -= AngleIncrease;
 		}
-
-		HandleDetection(detectedSomething);
+		return false;
 	}
 
-	private bool CheckRaycast(float angle, float offset)
+	private bool CheckRaycast(float angle, float offset, bool onlyPlayer)
 	{
 		if (Physics.Raycast(Light.transform.position, Utils.GetVectorFromAngle(angle, offset), out RaycastHit hit, ViewDistance, ViewConeLayerMask))
 		{
-			if (Utils.ShouldBeAlterted(hit, false))
+			if (Utils.ShouldBeAlterted(hit, onlyPlayer))
 			{
 				return true;
 			}
@@ -117,6 +120,7 @@ public class CameraController : MonoBehaviour
 			if (DetectionTimer <= 0.0f)
 			{
 				DetectionTimer = 0.0f;
+				GameManager.Instance.DisplayDefeatMessage(IsPlayerHitByRaycasts(), MessageSource.Camera);
 				PlayerController.Instance.Defeat();
 			}
 		}
@@ -132,6 +136,11 @@ public class CameraController : MonoBehaviour
 		}
 
 		Light.color = Color.Lerp(Utils.DetectedFlashlightColor, Utils.DefaultFlashlightColor, DetectionTimer);
+	}
+
+	private bool IsPlayerHitByRaycasts()
+	{
+		return ShootRaycasts(true);
 	}
 
 	public void Disable()
