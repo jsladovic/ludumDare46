@@ -461,7 +461,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: whom do you rescue?
+  m_text: whom do you want to rescue?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fbfcff02fce25324d97c951d869c0be0, type: 2}
   m_sharedMaterial: {fileID: 1056554427268462761, guid: fbfcff02fce25324d97c951d869c0be0,
@@ -531,10 +531,10 @@ MonoBehaviour:
   m_margin: {x: -182.93388, y: 0, z: -178.76672, w: 0}
   m_textInfo:
     textComponent: {fileID: 371430273}
-    characterCount: 19
+    characterCount: 27
     spriteCount: 0
-    spaceCount: 3
-    wordCount: 4
+    spaceCount: 5
+    wordCount: 6
     linkCount: 0
     lineCount: 1
     pageCount: 1
