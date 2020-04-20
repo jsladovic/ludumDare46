@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 	public Canvas MessageCanvas;
 	public TextMeshProUGUI MessageText;
 
+	private Coroutine DisplayMessageCoroutine;
+
 	private void Awake()
 	{
 		Instance = this;
@@ -78,9 +80,13 @@ public class GameManager : MonoBehaviour
 
 	public void DisplayMessage(string message, MessageSource source)
 	{
+		if (DisplayMessageCoroutine != null)
+		{
+			StopCoroutine(DisplayMessageCoroutine);
+		}
 		MessageText.text = message;
 		MessageCanvas.enabled = true;
-		StartCoroutine(HideMessageCanvas(5));
+		DisplayMessageCoroutine = StartCoroutine(HideMessageCanvas(5));
 	}
 
 	private IEnumerator HideMessageCanvas(int seconds)

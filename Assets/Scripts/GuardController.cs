@@ -35,7 +35,7 @@ public class GuardController : MonoBehaviour
 
 	private float DetectionTimerSpeed => GameManager.Instance.Alarmed ? AlarmedDefectionTimerSpeed : DefaultDetectionTimerSpeed;
 	private const float DefaultDetectionTimerSpeed = 0.5f;
-	private const float AlarmedDefectionTimerSpeed = 1.0f;
+	private const float AlarmedDefectionTimerSpeed = 0.75f;
 	private const float DetectionTimerRecoverySpeed = 0.5f;
 
 	private bool Stunned;

@@ -1,18 +1,16 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Level1Controller : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	void Start()
+	{
+		StartCoroutine(DisplayIntroMessage());
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private IEnumerator DisplayIntroMessage()
+	{
+		yield return new WaitForSeconds(1.0f);
+		GameManager.Instance.DisplayMessage("Okay, according to info, the creature should be just straight ahead, then left at the crossroad.", MessageSource.Driver);
+	}
 }
