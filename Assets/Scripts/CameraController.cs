@@ -8,6 +8,8 @@ public class CameraController : MonoBehaviour
 	public LayerMask ViewConeLayerMask;
 	public Transform Camera;
 
+	public bool OnlyActiveWhenAlarmed;
+
 	private float Offset => GameManager.Instance.Alarmed ? AlarmedOffset : DefaultOffset;
 	private float RotationSpeed => GameManager.Instance.Alarmed ? AlarmedRotationSpeed : DefaultRotationSpeed;
 
@@ -44,10 +46,21 @@ public class CameraController : MonoBehaviour
 	void Start()
 	{
 		DetectionTimer = MaxDetectionTimer;
+		if (OnlyActiveWhenAlarmed)
+			Disable();
 	}
 
 	void Update()
 	{
+		if (OnlyActiveWhenAlarmed)
+		{
+			if (GameManager.Instance.Alarmed == false)
+				return;
+
+			if (GameManager.Instance.Alarmed == true && Disabled)
+				Enable();
+		}
+
 		if (Disabled == true || PlayerController.Instance.Defeated)
 			return;
 
