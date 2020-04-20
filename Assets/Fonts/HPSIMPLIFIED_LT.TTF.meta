@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: fa1fa9b7247a92541b9824069305c494
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: HP Simplified
+  fontNames:
+  - HP Simplified
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c7e42280e23f5b84189eb75654577f78, type: 3}
+  - {fileID: 12800000, guid: 0b27c4777579f814d98ec8ba69e9dc37, type: 3}
+  - {fileID: 12800000, guid: 1428c438e1319e14f8309d5026a8a38c, type: 3}
+  - {fileID: 12800000, guid: 1113f6bb875c9c14e8e15296bad9e757, type: 3}
+  - {fileID: 12800000, guid: 312528cbcef5b2949aa03a02e19c3eea, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

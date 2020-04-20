@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
 	private void Awake()
 	{
 		Instance = this;
+		Time.timeScale = 1.0f;
 	}
 
 	public void CreatureExtracted()

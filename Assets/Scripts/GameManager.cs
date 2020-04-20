@@ -68,6 +68,11 @@ public class GameManager : MonoBehaviour
 		LevelManager.Instance.SceneLoader.LoadScene(0);
 	}
 
+	public void RestartLevel()
+	{
+		LevelManager.Instance.SceneLoader.LoadScene(LevelManager.Instance.LevelIndex);
+	}
+
 	public void RaiseSecurityAwareness()
 	{
 		Alarmed = true;
