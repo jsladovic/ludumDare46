@@ -11,6 +11,6 @@ public class Level1Controller : MonoBehaviour
 	private IEnumerator DisplayIntroMessage()
 	{
 		yield return new WaitForSeconds(1.0f);
-		GameManager.Instance.DisplayMessage("Okay, according to info, the creature should be just straight ahead, then left at the crossroad.", MessageSource.Driver);
+		GameManager.Instance.DisplayMessage("According to info, Phillip should be straight ahead, then left at the crossroad.", MessageSource.Driver);
 	}
 }

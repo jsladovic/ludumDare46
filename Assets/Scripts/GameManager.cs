@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
 		Alarmed = false;
 	}
 
-	public void DisplayMessage(string message, MessageSource source)
+	public void DisplayMessage(string message, MessageSource source, int seconds = 5)
 	{
 		if (DisplayMessageCoroutine != null)
 		{
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
 		}
 		MessageText.text = message;
 		MessageCanvas.enabled = true;
-		DisplayMessageCoroutine = StartCoroutine(HideMessageCanvas(5));
+		DisplayMessageCoroutine = StartCoroutine(HideMessageCanvas(seconds));
 	}
 
 	private IEnumerator HideMessageCanvas(int seconds)

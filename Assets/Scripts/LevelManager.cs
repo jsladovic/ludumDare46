@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour
 	public int RequiredNumberOfExtractedCreatures;
 	private int NumberOfExtractedCreatures;
 
+	public MissionOverCanvasController MissionOverCanvas;
+
 	private void Awake()
 	{
 		Instance = this;
@@ -41,6 +43,7 @@ public class LevelManager : MonoBehaviour
 
 	private IEnumerator FinishLevelCoroutine()
 	{
+		Outcome outcome = Outcome.Success;
 		if (NumberOfExtractedCreatures >= RequiredNumberOfExtractedCreatures)
 		{
 			int levelUnlocked = PlayerPrefs.GetInt(Utils.LevelUnlockedPrefsKey);
@@ -51,19 +54,20 @@ public class LevelManager : MonoBehaviour
 
 			if (NumberOfExtractedCreatures == NumberOfCreatures)
 			{
-				GameManager.Instance.DisplayMessage("Brilliant job, we're outta here!", MessageSource.Driver);
+				GameManager.Instance.DisplayMessage("Brilliant job, we're outta here!", MessageSource.Driver, 3);
 			}
 			else
 			{
-				GameManager.Instance.DisplayMessage("Didn't get them all, but still job done, let's go!", MessageSource.Driver);
+				GameManager.Instance.DisplayMessage("Didn't get them all, but still job done, let's go!", MessageSource.Driver, 3);
 			}
 		}
 		else
 		{
-			GameManager.Instance.DisplayMessage("All of this is a bit too much for you, isn't it? Don't worry, we'll find you a nice simple job in accounting...", MessageSource.Driver);
+			outcome = Outcome.Coward;
+			GameManager.Instance.DisplayMessage("All of this is a bit too much for you, isn't it? Don't worry, we'll find you a nice simple job in accounting...", MessageSource.Driver, 3);
 		}
 
-		yield return new WaitForSeconds(5);
-		SceneLoader.LoadScene(0);
+		yield return new WaitForSeconds(4);
+		MissionOverCanvas.Display(outcome);
 	}
 }
