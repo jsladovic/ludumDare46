@@ -21,11 +21,15 @@ public class LevelManager : MonoBehaviour
 		NumberOfExtractedCreatures++;
 		if (NumberOfExtractedCreatures >= NumberOfCreatures)
 		{
-			Debug.Log("All creatures extracted, leave the level");
+			GameManager.Instance.DisplayMessage("Right, that's all of them, now hold that E button and you're done!", MessageSource.Driver);
 		}
 		else if (NumberOfExtractedCreatures >= RequiredNumberOfExtractedCreatures)
 		{
-			Debug.Log("Level can be completed, but there are still creatures to rescue");
+			GameManager.Instance.DisplayMessage("That should be enough to get the job done, but if you want there are still around here.", MessageSource.Driver);
+		}
+		else
+		{
+			GameManager.Instance.DisplayMessage("One more they won't be able to display in those filthy cages", MessageSource.Driver);
 		}
 	}
 
