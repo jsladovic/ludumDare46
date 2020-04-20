@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
 		LevelManager.Instance.SceneLoader.LoadScene(0);
 	}
 
-	private void RaiseSecurityAwareness()
+	public void RaiseSecurityAwareness()
 	{
 		Alarmed = true;
 	}

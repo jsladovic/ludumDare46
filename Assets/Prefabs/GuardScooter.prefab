@@ -192,7 +192,7 @@ MonoBehaviour:
   PathParent: {fileID: 0}
   DefaultSpeed: 5
   DefaultRotationSpeed: 5
-  AlarmedSpeed: 10
+  AlarmedSpeed: 7.5
   AlarmedRotationSpeed: 7.5
   ViewConeLayerMask:
     serializedVersion: 2

@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 	private const float DefaultSpeed = 3.0f;
 	private const float DefaultRotationSpeed = 15.0f;
 
-	private const float CarryingSpeed = 2.0f;
+	private const float CarryingSpeed = 2.5f;
 	private const float CarryingRotationSpeed = 12.5f;
 
 	private const float PickUpRadius = 1.5f;
@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour
 					CreatureController creature = colliders.First(c => c.tag == "Creature").GetComponentInParent<CreatureController>();
 					CarriedCreature = creature ?? throw new UnityException("Found creature, but it doesn't have a controller");
 
+					GameManager.Instance.RaiseSecurityAwareness();
 					CarriedCreature.transform.SetParent(transform);
 					CarriedCreature.transform.position = CarryPosition.position;
 					Animator.SetBool(AnimatorParams.Carrying, true);

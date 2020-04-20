@@ -40,8 +40,15 @@ public class ExtractionPoint : MonoBehaviour
 
 	public void ReleaseCreature(CreatureController creature)
 	{
-		creature.transform.position = SafeZoneSpots[TakenSafeZoneSpots].position;
-		TakenSafeZoneSpots++;
+		if (SafeZoneSpots == null)
+		{
+			Destroy(creature.gameObject);
+		}
+		else
+		{
+			creature.transform.position = SafeZoneSpots[TakenSafeZoneSpots].position;
+			TakenSafeZoneSpots++;
+		}
 		LevelManager.Instance.CreatureExtracted();
 	}
 }
