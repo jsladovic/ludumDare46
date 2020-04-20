@@ -42,12 +42,13 @@ public class CameraController : MonoBehaviour
 	private const float DetectionTimerRecoverySpeed = 0.5f;
 
 	private bool Disabled;
+	private bool Asleep;
 
 	void Start()
 	{
 		DetectionTimer = MaxDetectionTimer;
 		if (OnlyActiveWhenAlarmed)
-			Disable();
+			Disable(true);
 	}
 
 	void Update()
@@ -57,7 +58,7 @@ public class CameraController : MonoBehaviour
 			if (GameManager.Instance.Alarmed == false)
 				return;
 
-			if (GameManager.Instance.Alarmed == true && Disabled)
+			if (GameManager.Instance.Alarmed == true && Asleep)
 				Enable();
 		}
 
@@ -156,9 +157,12 @@ public class CameraController : MonoBehaviour
 		return ShootRaycasts(true);
 	}
 
-	public void Disable()
+	public void Disable(bool putToSleep = false)
 	{
-		Disabled = true;
+		if (putToSleep)
+			Asleep = true;
+		else
+			Disabled = true;
 		DetectedSomething = false;
 		DetectionTimer = MaxDetectionTimer;
 		Light.enabled = false;
@@ -166,6 +170,7 @@ public class CameraController : MonoBehaviour
 
 	public void Enable()
 	{
+		Asleep = false;
 		Disabled = false;
 		Light.enabled = true;
 	}
