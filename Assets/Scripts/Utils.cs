@@ -6,6 +6,7 @@ public static class Utils
 	public static readonly Color DetectedFlashlightColor = Color.red;
 
 	public const string LevelUnlockedPrefsKey = "LevelUnlocked";
+	public const string AudioOnPrefsKey = "AudioOn";
 
 	public static Vector3 GetVectorFromAngle(float angle, float yOffset = 0.0f)
 	{

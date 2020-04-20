@@ -33622,7 +33622,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045267520}
-  m_LocalRotation: {x: 0.5257311, y: -0.00000006173763, z: 0.000000038156166, w: 0.85065085}
+  m_LocalRotation: {x: 0.52573115, y: 0.000000010771449, z: -0.000000006656903, w: 0.85065085}
   m_LocalPosition: {x: -7.54, y: 25.21, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -33646,6 +33646,7 @@ MonoBehaviour:
   NumberOfCreatures: 1
   RequiredNumberOfExtractedCreatures: 1
   MissionOverCanvas: {fileID: 1994054428}
+  Audio: {fileID: 5174125583806225875}
 --- !u!114 &2045267525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34094,7 +34095,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2065418195}
-  m_LocalRotation: {x: 0.5257311, y: -0.00000006173763, z: 0.000000038156166, w: 0.85065085}
+  m_LocalRotation: {x: 0.52573115, y: 0.000000010771449, z: -0.000000006656903, w: 0.85065085}
   m_LocalPosition: {x: -7.54, y: 25.21, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -35514,6 +35515,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62c9feb62b40d37418973be3298a3d07, type: 3}
+--- !u!82 &5174125583806225875 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5174125585849856703, guid: 62c9feb62b40d37418973be3298a3d07,
+    type: 3}
+  m_PrefabInstance: {fileID: 5174125583806225874}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6297870676540241593
 PrefabInstance:
   m_ObjectHideFlags: 0

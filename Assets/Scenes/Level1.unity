@@ -12731,6 +12731,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 968833999}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &983277494 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5174125585849856703, guid: 62c9feb62b40d37418973be3298a3d07,
+    type: 3}
+  m_PrefabInstance: {fileID: 5174125583806225874}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &991724430 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7419893661818285715, guid: 20a4fca97d15e724ea8f0337a6fa6e14,
@@ -29604,6 +29610,7 @@ MonoBehaviour:
   NumberOfCreatures: 1
   RequiredNumberOfExtractedCreatures: 1
   MissionOverCanvas: {fileID: 1994054428}
+  Audio: {fileID: 983277494}
 --- !u!114 &2045267525
 MonoBehaviour:
   m_ObjectHideFlags: 0

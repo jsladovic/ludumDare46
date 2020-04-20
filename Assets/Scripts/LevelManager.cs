@@ -13,10 +13,15 @@ public class LevelManager : MonoBehaviour
 
 	public MissionOverCanvasController MissionOverCanvas;
 
+	public AudioSource Audio;
+
 	private void Awake()
 	{
 		Instance = this;
 		Time.timeScale = 1.0f;
+		
+		bool audioActivated = PlayerPrefs.GetInt(Utils.AudioOnPrefsKey, 1) == 1;
+		Audio.mute = audioActivated == false;
 	}
 
 	public void CreatureExtracted()
