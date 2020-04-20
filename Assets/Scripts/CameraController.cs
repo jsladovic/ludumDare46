@@ -97,7 +97,7 @@ public class CameraController : MonoBehaviour
 
 		for (int i = 0; i < RayCount; i++)
 		{
-			if (CheckRaycast(angle, StartingRaycastOffset, onlyPlayer) || CheckRaycast(angle, EndingRaycastOffset, onlyPlayer)
+			if (CheckRaycast(angle, EndingRaycastOffset, onlyPlayer) || CheckRaycast(angle, StartingRaycastOffset, onlyPlayer)  
 				|| CheckRaycast(angle, MiddleUpperRaycastOffset, onlyPlayer) || CheckRaycast(angle, MiddleLowerRaycastOffset, onlyPlayer))
 			{
 				return true;
