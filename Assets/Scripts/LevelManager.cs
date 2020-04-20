@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -32,6 +31,11 @@ public class LevelManager : MonoBehaviour
 
 	public void FinishLevel()
 	{
+		StartCoroutine(FinishLevelCoroutine());
+	}
+
+	private IEnumerator FinishLevelCoroutine()
+	{
 		if (NumberOfExtractedCreatures >= RequiredNumberOfExtractedCreatures)
 		{
 			int levelUnlocked = PlayerPrefs.GetInt(Utils.LevelUnlockedPrefsKey);
@@ -39,8 +43,22 @@ public class LevelManager : MonoBehaviour
 			{
 				PlayerPrefs.SetInt(Utils.LevelUnlockedPrefsKey, LevelIndex);
 			}
+
+			if (NumberOfExtractedCreatures == NumberOfCreatures)
+			{
+				GameManager.Instance.DisplayMessage("Brilliant job, we're outta here!", MessageSource.Driver);
+			}
+			else
+			{
+				GameManager.Instance.DisplayMessage("Didn't get them all, but still job done, let's go!", MessageSource.Driver);
+			}
+		}
+		else
+		{
+			GameManager.Instance.DisplayMessage("All of this is a bit too much for you, isn't it? Don't worry, we'll find you a nice simple job in accounting...", MessageSource.Driver);
 		}
 
+		yield return new WaitForSeconds(3);
 		SceneLoader.LoadScene(0);
 	}
 }

@@ -117,9 +117,9 @@ public class PlayerController : MonoBehaviour
 			else
 			{
 				CarriedCreature.transform.position = DropPosition.position;
-				Animator.SetBool(AnimatorParams.Carrying, false);
 			}
 
+			Animator.SetBool(AnimatorParams.Carrying, false);
 			CarriedCreature.transform.SetParent(transform.parent);
 			CarriedCreature = null;
 		}

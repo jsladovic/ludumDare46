@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -10,11 +11,15 @@ public class GameManager : MonoBehaviour
 
 	public Canvas PauseMenuCanvas;
 
+	public Canvas MessageCanvas;
+	public TextMeshProUGUI MessageText;
+
 	private void Awake()
 	{
 		Instance = this;
 		Alarmed = false;
 		PauseMenuCanvas.enabled = false;
+		MessageCanvas.enabled = false;
 	}
 
 	void Update()
@@ -70,4 +75,25 @@ public class GameManager : MonoBehaviour
 	{
 		Alarmed = false;
 	}
+
+	public void DisplayMessage(string message, MessageSource source)
+	{
+		MessageText.text = message;
+		MessageCanvas.enabled = true;
+		StartCoroutine(HideMessageCanvas(3));
+	}
+
+	private IEnumerator HideMessageCanvas(int seconds)
+	{
+		yield return new WaitForSeconds(seconds);
+		MessageCanvas.enabled = false;
+	}
+}
+
+public enum MessageSource
+{
+	Player = 1,
+	Driver = 2,
+	Guard = 3,
+	Camera = 4
 }
