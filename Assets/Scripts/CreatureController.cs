@@ -22,5 +22,5 @@ public enum Ability
 {
 	None = 0,
 	Electric = 1,
-	Poison = 2,
+	Smelly = 2,
 }

@@ -17,7 +17,7 @@ public class CreatureEffectController : MonoBehaviour
 				camera.Disable();
 			}
 		}
-		else if (Ability == Ability.Poison)
+		else if (Ability == Ability.Smelly)
 		{
 			if (other.tag == "Guard")
 			{
@@ -37,7 +37,7 @@ public class CreatureEffectController : MonoBehaviour
 				camera.Enable();
 			}
 		}
-		else if (Ability == Ability.Poison)
+		else if (Ability == Ability.Smelly)
 		{
 			if (other.tag == "Guard")
 			{
