@@ -118,7 +118,7 @@ public class GuardController : MonoBehaviour
 				return true;
 			}
 		}
-		Debug.DrawRay(origin, Utils.GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
+		//Debug.DrawRay(origin, Utils.GetVectorFromAngle(angle) * ViewDistance, Color.cyan);
 		return false;
 	}
 

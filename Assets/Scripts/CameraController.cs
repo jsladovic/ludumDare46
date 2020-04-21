@@ -117,7 +117,7 @@ public class CameraController : MonoBehaviour
 				return true;
 			}
 		}
-		Debug.DrawRay(Light.transform.position, Utils.GetVectorFromAngle(angle, offset) * ViewDistance, Color.cyan);
+		//Debug.DrawRay(Light.transform.position, Utils.GetVectorFromAngle(angle, offset) * ViewDistance, Color.cyan);
 		return false;
 	}
 
